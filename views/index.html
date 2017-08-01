@@ -1,0 +1,78 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Welcome to Glitch!</title>
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+  </head>
+  <body class="blue-grey darken-1">
+    <div class="container">
+      <div class="card-panel brown darken-4 white-text">
+      <div class="row">
+        <div class="col m12">
+          <h1 class="center">
+            Date Format Conversion
+          </h1>
+          <div class="card-panel blue-grey darken-4 white-text">
+            <h4>
+              Example Usage
+            </h4>
+            <p>
+               https://timestamp-mservice.glitch.me/{date}
+              <p>
+                i.e. <br>https://timestamp-mservice.glitch.me/December, 11, 2013
+                <br> https://timestamp-mservice.glitch.me/1450137600
+            </p>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col m12">
+        <h2>
+        Example Conversion
+        </h2>
+        <a style="color:red;text-decoration:underline" href="/December 15, 2015">December 15, 2015</a>
+
+        <h1>
+          Tests
+        </h1>
+          <table class="test-results">
+            <thead>
+              <th>Value</th>
+              <th>Result</th>
+            </thead>
+          </table>
+      </div>
+      <div class="card-panel center">
+        <a href="https://twitter.com/sh4hidkh4n">Created By @sh4hidkh4n</a>
+      </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      var testItems = ["December 15, 2015", "January 15, 2015", (new Date()).getTime() / 1000, (new Date("August 15, 2015")).getTime()/1000];
+      testItems.forEach(item=>{
+        $.get("/" + item, data=>{
+          console.log(data);
+          var html = "<tr><td><a href='/" + item + "'>"+item+"</a></td><td>" + JSON.stringify(data) +  "</td></tr>"
+          $(".test-results").append(html)
+        })
+      })
+    })
+  </script>
+</html>
